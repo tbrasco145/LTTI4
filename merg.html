@@ -129,7 +129,7 @@ p {font-size: 1.6em;
     display: flex;
     justify-content: center;
     position: fixed; /* Fixed position at the bottom */
-    bottom: 20px; /* Distance from the bottom */
+    bottom: 80px; /* Distance from the bottom to allow space for hr and text */
     left: 0;
     right: 0;
     padding: 10px 0;
@@ -168,7 +168,20 @@ p {font-size: 1.6em;
     height: 100%; /* Full height of carousel item */
 }
 		
-		
+.carousel-divider {
+    margin: 0; /* Remove margin to align with controls */
+    border: none; /* Remove default border */
+    height: 2px; /* Height of the hr */
+    background-color: black; /* Color of the hr */
+    position: relative; /* Allow it to flow naturally */
+}
+
+.carousel-footer {
+    text-align: center; /* Center the text */
+    font-size: 0.8em; /* Font size for the year */
+    color: black; /* Text color */
+    margin-top: 10px; /* Space between hr and footer text */
+}
 
 .text-block {
     flex: 1; /* Take up available space */
@@ -190,13 +203,25 @@ p {font-size: 1.6em;
         position: absolute;
         top: 60px; /* Adjust based on header height */
         right: 0;
-        background-color: #333;
+        background-color: #333;		
         width: 100%;
     }
 
     .nav-links.active {
         display: flex;
     }
+	
+	.nav-links li {
+		padding: 20px;
+		border-bottom: 1px solid;
+		margin-left: 0px;
+		
+	}
+	
+		.nav-links li a {
+		color: #ffffff;
+		
+	}
 
     .hamburger {
         display: block;
@@ -264,6 +289,8 @@ p {font-size: 1.6em;
             <img src="image3.jpg" alt="Description of image 3">
         </div>
     </div>
+	
+
 </div>
 
     <div class="carousel-controls">
@@ -273,7 +300,14 @@ p {font-size: 1.6em;
         <button class="carousel-control stop" aria-label="Stop Auto Slide">Stop</button>
 		
 		<button class="carousel-control next" aria-label="Next Slide">&#10095;</button>
+
     </div>
+	
+	<hr class="carousel-divider">
+
+<div class="carousel-footer">
+    <p>2024</p>
+</div>
 
     <script language="javascript">
 let currentIndex = 0;
