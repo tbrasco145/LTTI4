@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+	
+	<style type="text/css">
+	
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+	
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   /* padding: 10px 20px; */ /* Top and bottom padding */
+	margin-top: 20px;
+	background-color: #fff;
+    color: #646464;
+    position: relative;
+    z-index: 10; /* Ensure header is above carousel */
+}
+		
+h1, h2, p {
+	font-family: "Times New Roman", Baskerville, "Palatino Linotype", Palatino, "Century Schoolbook L", "serif";
+	color: #646464; 
+	}
+
+h2 {
+	font-size: 2.0em; 
+	font-weight: lighter;
+	line-height: auto;
+	margin-block-end: 0em;
+	margin-bottom: 0px;
+	border-bottom: 0px;
+	padding-bottom: 0px;
+	}
+
+p {font-size: 1.6em;
+	font-style: italic;}
+		
+.logo {
+    padding-left: 50px; /* Add padding to the left of the logo */
+	background-color: #646464;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    padding-right: 50px; /* Add padding to the right of the navigation */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #646464;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ddd;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+		
+.carousel {
+    position: relative;
+    width: calc(100% - 100px); /* Full width minus padding */
+    height: 80vh; /* Full-screen height */
+    overflow: hidden; /* Prevent overflow during sliding */
+    padding: 0 50px; /* Add 50px padding to the left and right */
+    box-sizing: border-box; /* Include padding in width calculation */
+}		
+
+.carousel-item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease, opacity 0.5s ease; /* Add transition effect */
+    opacity: 0; /* Start with opacity 0 */
+}
+
+.carousel-item.active {
+    opacity: 1; /* Show active item */
+    transform: translateX(0); /* Reset transform for active item */
+}
+
+.carousel-item.next {
+    transform: translateX(100%); /* Slide in from the right */
+}
+
+.carousel-item.prev {
+    transform: translateX(-100%); /* Slide out to the left */
+}
+
+.carousel-item.out {
+    opacity: 0; /* Fade out */
+    transform: translateX(-100%); /* Slide out to the left */
+}
+
+.carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Carousel Controls */
+.carousel-controls {
+    display: flex;
+    justify-content: center;
+    position: fixed; /* Fixed position at the bottom */
+    bottom: 20px; /* Distance from the bottom */
+    left: 0;
+    right: 0;
+    padding: 10px 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 20; /* Ensure controls are above other elements */
+}
+
+.carousel-control {
+    width: 40px; /* Fixed width */
+    height: 40px; /* Fixed height */
+    border: 5px solid #646464; /* Black border */
+    border-radius: 50%; /* Make it round */
+    background-color: white; /* Default background color */
+    color: black; /* Default text color */
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s; /* Smooth transition */
+    display: flex; /* Center content */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    margin: 0 10px; /* Space between buttons */
+}
+
+.carousel-control:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Slight hover effect */
+}
+
+/* Selected State */
+.carousel-control.selected {
+    background-color: blue; /* Change background color when selected */
+    color: white; /* Change text color when selected */
+    border-color: blue; /* Change border color when selected */
+}	
+.carousel-content {
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+    height: 100%; /* Full height of carousel item */
+}
+		
+		
+
+.text-block {
+    flex: 1; /* Take up available space */
+    padding: 20px; /* Add some padding */
+    color: white; /* Text color */
+}
+
+.carousel-content img {
+    width:60%; /* Image takes half the width */
+    height: auto; /* Maintain aspect ratio */
+}		
+		
+
+/* Media Queries for Mobile */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* Adjust based on header height */
+        right: 0;
+        background-color: #333;
+        width: 100%;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: block;
+    }
+	    .carousel-content {
+        flex-direction: column; /* Stack text above image */
+        align-items: flex-start; /* Align items to the start (left) */
+    }
+
+    .carousel-content img {
+        width: 100%; /* Image takes full width */
+        margin-top: 10px; /* Space between text and image */
+        align-self: flex-start; /* Align image to the top */
+    }
+	
+	
+	
+}
+	</style>
+	
+    <title>Carousel with Navigation</title>
+</head>
+<body>
+     <header>
+        <div class="logo">
+            <h1>Logo</h1>
+        </div>
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="#art">Art</a></li>
+                <li><a href="#design">Design</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                &#9776; <!-- Hamburger icon -->
+            </div>
+        </nav>
+    </header>
+
+<div class="carousel">
+    <div class="carousel-item active" tabindex="0">
+        <div class="carousel-content">
+            <div class="text-block">
+                <h2>Halifax Digital Festival</h2>
+                <p>Identity</p>
+            </div>
+            <img src="image1.jpg" alt="Description of image 1">
+        </div>
+    </div>
+    <div class="carousel-item" tabindex="0">
+        <div class="carousel-content">
+            <div class="text-block">
+                <h2>Equifax</h2>
+                <p>Member Centre</p>
+            </div>
+            <img src="image2.jpg" alt="Description of image 2">
+        </div>
+    </div>
+    <div class="carousel-item" tabindex="0">
+        <div class="carousel-content">
+            <div class="text-block">
+                <h2>WHSmith</h2>
+                <p>Campaign Brochure</p>
+            </div>
+            <img src="image3.jpg" alt="Description of image 3">
+        </div>
+    </div>
+</div>
+
+    <div class="carousel-controls">
+        <button class="carousel-control prev" aria-label="Previous Slide">&#10094;</button>
+        
+        <button class="carousel-control start" aria-label="Start Auto Slide">Start</button>
+        <button class="carousel-control stop" aria-label="Stop Auto Slide">Stop</button>
+		
+		<button class="carousel-control next" aria-label="Next Slide">&#10095;</button>
+    </div>
+
+    <script language="javascript">
+let currentIndex = 0;
+const items = document.querySelectorAll('.carousel-item');
+const totalItems = items.length;
+let autoSlideInterval;
+
+// Function to show the current slide
+function showSlide(index) {
+    items.forEach((item, i) => {
+        item.classList.remove('active', 'next', 'prev', 'out');
+        
+        if (i === index) {
+            item.classList.add('active');
+        } else if (i === (index + 1) % totalItems) {
+            item.classList.add('next'); // Next slide
+        } else if (i === (index - 1 + totalItems) % totalItems) {
+            item.classList.add('prev'); // Previous slide
+        }
+    });
+
+    // Add 'out' class to the previous item to slide it out
+    const prevIndex = (index - 1 + totalItems) % totalItems;
+    items[prevIndex].classList.add('out');
+}
+
+// Function to start the auto slide
+function startAutoSlide() {
+    autoSlideInterval = setInterval(() => {
+        currentIndex = (currentIndex + 1) % totalItems;
+        showSlide(currentIndex);
+    }, 15000);
+}
+
+// Function to stop the auto slide
+function stopAutoSlide() {
+    clearInterval(autoSlideInterval);
+}
+
+// Event listeners for manual controls
+document.querySelector('.next').addEventListener('click', () => {
+    stopAutoSlide();
+    currentIndex = (currentIndex + 1) % totalItems;
+    showSlide(currentIndex);
+});
+
+document.querySelector('.prev').addEventListener('click', () => {
+    stopAutoSlide();
+    currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+    showSlide(currentIndex);
+});
+
+// Event listeners for start and stop controls
+document.querySelector('.start').addEventListener('click', () => {
+    startAutoSlide();
+});
+
+document.querySelector('.stop').addEventListener('click', () => {
+    stopAutoSlide();
+});
+
+// Hamburger menu functionality
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.querySelector('.nav-links');
+
+hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+});
+
+// Show the first slide and start auto slide by default
+showSlide(currentIndex);
+startAutoSlide();
+		
+		
+// Event listeners for manual controls
+document.querySelector('.next').addEventListener('click', () => {
+    stopAutoSlide();
+    currentIndex = (currentIndex + 1) % totalItems;
+    showSlide(currentIndex);
+    updateButtonStates();
+});
+
+document.querySelector('.prev').addEventListener('click', () => {
+    stopAutoSlide();
+    currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+    showSlide(currentIndex);
+    updateButtonStates();
+});
+
+// Function to update button states
+function updateButtonStates() {
+    const controls = document.querySelectorAll('.carousel-control');
+    controls.forEach(control => control.classList.remove('selected')); // Remove selected class from all
+    controls[currentIndex].classList.add('selected'); // Add selected class to the current control
+}		
+	</script>
+</body>
+</html>
