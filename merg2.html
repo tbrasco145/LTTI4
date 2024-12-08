@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Web Page</title>
+    <link rel="stylesheet" href="styles.css">
+	<style type="text/css">
+body {
+    font-family:Constantia, "Lucida Bright", "DejaVu Serif", Georgia, "serif";
+	color:dimgrey;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f8f8f8;
+    margin-top: 20px; /* Space above the header */
+}
+		
+h1, h2 {
+	font-weight: normal;
+}
+		
+.left-column p { 
+	font-style: italic;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav {
+  /*  position: relative; */
+}
+
+.nav-items {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-items li {
+    margin: 0 20px;
+}
+
+.separator {
+    margin: 0 10px;
+    display: inline-block;
+}
+
+.burger {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-items {
+    display: flex;
+    transition: transform 0.5s ease; /* Smooth transition */
+}
+
+.carousel-item {
+    min-width: 100%;
+    display: flex;
+}
+
+.left-column {
+    width: 20%;
+    padding: 20px;
+}
+
+	
+.right-column {
+    width: 80%;
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+  /*  align-items: flex-start; */ /* Align items to the top */
+    padding: 20px; /* Add padding if needed */
+}		
+
+.right-column img {
+   /* width: 100%; */
+    height: auto;
+}
+
+.carousel-item.active {
+    display: flex;
+}
+
+.controls {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: row; /* Arrange buttons in a row */
+    justify-content: center; /* Center buttons horizontally */
+    margin: 20px 0;
+  /*  background-color: #f0f0f0;*/ /* Light background for visibility */
+    padding: 10px; /* Padding around the controls */
+    border-radius: 5px; /* Rounded corners */
+
+}
+
+.controls button {
+    width: 40px; /* Set a fixed width */
+    height: 40px; /* Set a fixed height */
+    border: 5px solid dimgrey; /* 5px border */
+    border-radius: 50%; /* Make it circular */
+    background-color: white; /* Background color */
+    color: dimgrey; /* Text color */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover */
+    display: flex; /* Center content */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    margin: 0 5px; /* Space between buttons */
+}
+
+.controls button:hover {
+    background-color:darkgray; /* Change background on hover */
+    color: white; /* Change text color on hover */
+}
+
+.copyright {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 14px; /* Adjust font size as needed */
+    color: #555; /* Change text color */
+}
+
+hr {
+    margin: 20px 0; /* Space above and below the horizontal rule */
+}
+
+@media (max-width: 768px) {
+    .nav-items {
+        display: none; /* Hide by default */
+        flex-direction: column; /* Stack items vertically */
+        position: absolute;
+        background-color: #f8f8f8; /* Background color */
+        top: 80px; /* Position below the header */
+        right: 0;
+        width: 100%; /* Full width */
+      /*  border: 1px solid #ccc; */ /* Border for visibility */
+        z-index: 1000; /* Ensure it appears above other content */
+    }
+	.nav-items li {
+			padding-top: 15px;
+		padding-bottom: 15px;
+		border-bottom: 1px solid #ccc;
+	}
+    .nav-items.active {
+        display: flex; /* Show when active */
+    }
+	
+	.separator {
+  visibility: hidden;
+		display: none;
+}
+
+
+    .burger {
+        display: block; /* Show burger icon */
+    }
+
+    .carousel-item {
+        flex-direction: column; /* Stack columns on smaller screens */
+    }
+
+    .left-column, .right-column {
+        width: 100%; /* Full width for both columns */
+    }
+	.right-column img {
+    width: 100%; 
+    height: auto;
+}
+}
+
+	</style>
+</head>
+<body>
+    <header>
+        <div class="logo">Logo</div>
+        <nav class="nav">
+            <ul class="nav-items">
+                <li>Home</li>
+                <span class="separator">|</span>
+                <li>About</li>
+                <span class="separator">|</span>
+                <li>Contact</li>
+            </ul>
+            <div class="burger" onclick="toggleMenu()">&#9776;</div>
+        </nav>
+    </header>
+
+    <div class="carousel">
+        <div class="carousel-items">
+            <div class="carousel-item active">
+                <div class="left-column">
+                    <h2>Slide 1 Title</h2>
+                    <p>This is the description for slide 1.</p>
+                </div>
+                <div class="right-column">
+                    <img src="Jakob_Nielsen_Fighting_Styl.jpg" alt="Slide 1 Image">
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="left-column">
+                    <h2>Slide 2 Title</h2>
+                    <p>This is the description for slide 2.</p>
+                </div>
+                <div class="right-column">
+                    <img src="PTYFS-Robbie.png" alt="Slide 2 Image">
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="left-column">
+                    <h2>Slide 3 Title</h2>
+                    <p>This is the description for slide 3.</p>
+                </div>
+                <div class="right-column">
+                    <img src="tumblr_mh1wz3jRei1s478lso1_500.png" alt="Slide 3 Image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="controls">
+    <button onclick="prevSlide()"><</button> <!-- Left arrow -->
+    <button onclick="startCarousel()">&#9654;</button> <!-- Play arrow -->
+    <button onclick="stopCarousel()">&#10074;&#10074;</button> <!-- Pause icon -->
+    <button onclick="nextSlide()">></button> <!-- Right arrow -->
+</div>
+
+    <hr> <!-- Horizontal rule -->
+
+    <p class="copyright">© 2023 Your Company Name. All rights reserved.</p>
+
+    <script>
+        let currentIndex = 0;
+        let interval;
+
+        function showSlide(index) {
+            const slides = document.querySelectorAll('.carousel-item');
+            const totalSlides = slides.length;
+            currentIndex = (index + totalSlides) % totalSlides; // Wrap around
+
+            const carouselItems = document.querySelector('.carousel-items');
+            const offset = -currentIndex * 100; // Calculate offset for sliding
+            carouselItems.style.transform = `translateX(${offset}%)`;
+        }
+
+        function nextSlide() {
+            showSlide(currentIndex + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentIndex - 1);
+        }
+
+        function startCarousel() {
+            interval = setInterval(nextSlide, 10000);
+        }
+
+        function stopCarousel() {
+            clearInterval(interval);
+        }
+
+        function toggleMenu() {
+            const navItems = document.querySelector('.nav-items');
+            navItems.classList.toggle('active'); // Toggle the active class
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            startCarousel(); // Start the carousel automatically when the page loads
+        });
+    </script>
+</body>
+</html>
